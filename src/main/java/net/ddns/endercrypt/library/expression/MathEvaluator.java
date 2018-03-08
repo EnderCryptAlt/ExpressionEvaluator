@@ -29,12 +29,12 @@ public class MathEvaluator
 		{
 			if (constructableMathObject.getName().startsWith(PACKAGE) == false)
 			{
-				System.out.println("Ignoring: " + constructableMathObject.getName());
+				// System.out.println("Ignoring: " + constructableMathObject.getName());
 				continue;
 			}
 			try
 			{
-				System.out.println("Added:  " + constructableMathObject.getName());
+				// System.out.println("Added:  " + constructableMathObject.getName());
 				Constructor<? extends MathObjectConstructorProvider> constructor = constructableMathObject.getConstructor();
 				MathObjectConstructorProvider instance = constructor.newInstance();
 				register(instance);
@@ -92,7 +92,7 @@ public class MathEvaluator
 				deletedConstructors.clear();
 				mathIterator.forward();
 				text = mathIterator.extract();
-				System.out.println("Text: " + text);
+				// System.out.println("Text: " + text);
 				Iterator<MathConstructor> iterator = constructors.iterator();
 
 				// check each iterator
@@ -107,7 +107,7 @@ public class MathEvaluator
 				}
 			}
 
-			System.out.println("constructors: " + constructors);
+			// System.out.println("constructors: " + constructors);
 
 			// check deleted
 			if ((constructors.size() == 0) || (mathIterator.canForward() == false))
@@ -118,7 +118,7 @@ public class MathEvaluator
 				}
 				else
 				{
-					System.out.println("text: \"" + text + "\" length: " + mathIterator.length() + " start: " + mathIterator.getStartIndex() + " end: " + mathIterator.getEndIndex());
+					// System.out.println("text: \"" + text + "\" length: " + mathIterator.length() + " start: " + mathIterator.getStartIndex() + " end: " + mathIterator.getEndIndex());
 					//if ((mathIterator.getStartIndex() < mathIterator.length() - 1) && (mathIterator.getEndIndex() == mathIterator.length() - 1))
 					if ((constructors.size() == 0) && (mathIterator.getStartIndex() < mathIterator.length() - 1))
 					{
@@ -130,16 +130,16 @@ public class MathEvaluator
 				{
 					Collections.sort(constructors);
 					targetMathContructor = constructors.get(constructors.size() - 1);
-					System.out.println("Last alive: " + targetMathContructor);
+					// System.out.println("Last alive: " + targetMathContructor);
 				}
 				else
 				{
 					deletedConstructors.addAll(constructors);
 					Collections.sort(deletedConstructors);
 					targetMathContructor = deletedConstructors.get(deletedConstructors.size() - 1);
-					System.out.println("Last dead: " + targetMathContructor);
+					// System.out.println("Last dead: " + targetMathContructor);
 				}
-				System.out.println("Construct: " + targetMathContructor);
+				// System.out.println("Construct: " + targetMathContructor);
 				return targetMathContructor.build();
 			}
 		}

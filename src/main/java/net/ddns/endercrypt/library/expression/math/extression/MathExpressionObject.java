@@ -26,14 +26,14 @@ public class MathExpressionObject extends SolveableMathObject implements Imploda
 			String info = (diff < 0) ? (-diff + " (") : (diff + " )");
 			throw new MathException("expected " + info + " in \"" + text + "\"");
 		}
-		System.out.println("Processing: " + text);
+		// System.out.println("Processing: " + text);
 		objects = MathEvaluator.extract(text);
-		System.out.println("START: \"" + text + "\"");
+		// System.out.println("START: \"" + text + "\"");
 		for (MathObject mathObject : objects)
 		{
-			System.out.println("\t" + mathObject.toString());
+			// System.out.println("\t" + mathObject.toString());
 		}
-		System.out.println("STOP");
+		// System.out.println("STOP");
 	}
 
 	@Override
@@ -73,9 +73,9 @@ public class MathExpressionObject extends SolveableMathObject implements Imploda
 				throw new RuntimeException();
 			}
 			ImplodableMathOperator implodable = temporaryObjects.getClass(bestIndex, ImplodableMathOperator.class);
-			System.out.println("Before implode: " + temporaryObjects + " of index " + bestIndex);
+			// System.out.println("Before implode: " + temporaryObjects + " of index " + bestIndex);
 			implodable.implode(temporaryObjects, bestIndex);
-			System.out.println("After implode: " + temporaryObjects);
+			// System.out.println("After implode: " + temporaryObjects);
 		}
 		return temporaryObjects.getClass(0, SolveableMathObject.class).solve();
 	}
